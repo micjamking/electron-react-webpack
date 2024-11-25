@@ -1,0 +1,37 @@
+{
+  "name": "my-electron-app",
+  "version": "1.0.0",
+  "description": "A minimal Electron application with React and Webpack",
+  "main": "dist/electron/main.js",
+  "scripts": {
+    "build-client": "webpack --config webpack.client.config.js",
+    "build-server": "tsc",
+    "build": "npm run build-client && npm run build-server",
+    "start-react": "webpack serve --config webpack.client.config.js --mode development",
+    "start-electron": "cross-env NODE_ENV=development electron dist/electron/main.js",
+    "start": "concurrently \"npm run build-server\" \"npm run start-react\" \"wait-on http://localhost:3000 && npm run start-electron\"",
+    "lint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
+    "lint-fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.10",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "electron": "^22.0.0",
+    "eslint": "^8.28.0",
+    "html-webpack-plugin": "^5.5.0",
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.4",
+    "wait-on": "^8.0.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
+  }
+}
